@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../CSS/reseter.css">
+    <link rel="stylesheet" href="../CSS/style.css">
+    <link rel="stylesheet" href="../CSS/style_form.css">
+    <title>Document</title>
+</head>
+<body>
+    <header>
+        <div class="header">
+            <button>Показать все</button>
+            <button class="add-object">Добавить</button>
+            <div class="search">
+                <input class="input-field" type="text" placeholder="Поиск">
+                <button type="submit" class="searchButton">></button>
+            </div>
+            <button action="">Войти</button>
+            <button class="hidden">Выйти</button>
+        </div>
+    </header>
+    <main>
+        <!-- <div class="all-object-db">
+            <div class="object-db">
+                <a class="name-object" href="">Модель 1</a>
+                <div>
+                    <button>Редактировать</button>
+                    <button>Удалить</button>
+                </div>
+            </div>
+            <div class="object-db">
+                <p class="name-object">Модель ыдлвмтдвлаи</p>
+                <div>
+                    <button>Редактировать</button>
+                    <button>Удалить</button>
+                </div>
+            </div>
+        </div> -->
+    </main>
+
+    <div class="form hidden">
+        <div class="form-content">
+            <form action="" method="POST" class="my-form">
+                <button class="exit">X</button>
+                <label for="">
+                    <span>Имя модели</span>
+                    <input class="name" type="text" name="name" required>
+                </label>
+                <label>
+                    <span>Тип модели</span>
+                    <select class="type-selection" name="type">
+                        <option value="pyramid">Пирамида</option>
+                        <option value="cube">Куб</option>
+                        <option value="sphere">Сфера</option>
+                    </select>
+                </label>
+                <label>
+                    <span>Описание</span>
+                    <input type="text" name="description" required>
+                </label>
+                <label>
+                    <span>Цвет модели</span>
+                    <select class="color-selection" name="color">
+                        <option value="green">Зеленый</option>
+                        <option value="red">Красный</option>
+                        <option value="blue">Синий</option>
+                    </select>
+                </label>
+                <label>
+                    <span>Радиус/Длина ребра</span>
+                    <input class="size-selection" type="number" name="size" value="6">
+                </label>
+                <div class="threejs"></div>
+                <button type="submit" class="submit">Добавить</button>
+            </form>
+        </div>
+    </div>
+    <script src="./index.js"></script>
+    <script src="../model preview/three.js"></script>
+    <script src="../model preview/index.js"></script>
+</body>
+</html>
