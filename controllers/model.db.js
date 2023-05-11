@@ -8,8 +8,9 @@ const postModel = async (req, res, next) => {
         const model = await insert('models', {author, name, type, modelJSON, description, data})
         res.json(model)
     } catch(er) {
-        const error = new Error(er);
-        next(error);
+        const error = new Error(er)
+        error.status = 500
+        next(error)
     }
 }
 
@@ -19,6 +20,7 @@ const findModels = async (req, res, next) => {
         res.json(models)
     } catch(er) {
         const error = new Error(er);
+        error.status = 500
         next(error);
     }
 }
@@ -29,10 +31,13 @@ const findModel = async (req, res, next) => {
             let comment = await findOne('models', req.params.id)
             res.json(comment)
         } else {
-            res.status(400).send("Not Found")
+            const error = new Error('Not found');
+            error.status = 400
+            next(error);
         }
     } catch(er) {
         const error = new Error(er);
+        error.status = 500
         next(error);
     }
 }
@@ -43,13 +48,14 @@ const changeModel = async (req, res, next) => {
         if (ObjectId.isValid(req.params.id)) {
             const data = Date();
             res.json(await updateOne('models', {author, name, type, modelJSON, description, data}, req.params.id))
-            
-            // res.json(updatedModel)
         } else {
-            res.status(404).send("Not Found")
+            const error = new Error('Not found');
+            error.status = 400
+            next(error);
         }
     } catch(er) {
         const error = new Error(er);
+        error.status = 500
         next(error);
     }
 }
@@ -60,10 +66,13 @@ const deleteModel = async(req, res, next) => {
             const updateModel = await deleteOne('models', req.params.id)
             res.json(updateModel)
         } else {
-            res.status(404).send("Not Found")
+            const error = new Error('Not found');
+            error.status = 400
+            next(error);
         }
     } catch(er) {
         const error = new Error(er);
+        error.status = 500
         next(error);
     }
 }
@@ -73,13 +82,20 @@ const deleteModels = async(req, res, next) => {
         await deleteMany('models')
     } catch(er) {
         const error = new Error(er);
+        error.status = 500
         next(error);
     }
     res.json()
 }
 
 const error = (err, req, res, next) => {
-    console.log(err.message);
+    res.send(`status ${err.status}\n messange: ${err.message}`)
 }
 
-export default {postModel, findModels, findModel, changeModel, deleteModel, deleteModels}
+export default {postModel, 
+    findModels, 
+    findModel, 
+    changeModel, 
+    deleteModel, 
+    deleteModels, 
+    error}

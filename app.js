@@ -2,6 +2,8 @@ import express from 'express'
 import path from 'path'
 import router from './routers/router.js'
 
+import {badRequest} from './middlewares/middleware.js'
+
 const __dirname = path.resolve();
 
 const app = express()
@@ -17,3 +19,5 @@ app.listen(port, hostname, () => {
 app.use(express.static(path.resolve(__dirname, 'public')));
 
 app.use(router)
+
+app.use(badRequest)

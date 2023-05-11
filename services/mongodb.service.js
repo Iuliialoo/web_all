@@ -17,7 +17,7 @@ async function insert(collection, data) {
 
 async function findAll(collection) {
   const collect = db.collection(collection)
-  const result = await collect.find( {}, { name: true } )
+  const result = await collect.find( {}, { projection: {name: true} } )
   return result.toArray()
 }
 

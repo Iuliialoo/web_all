@@ -27,6 +27,6 @@ router.delete('/models/:id', checkAuthorization, controllerModel.deleteModel)
 
 router.delete('/models', checkAuthorization, controllerModel.deleteModels) 
 
-router.use(badRequest)
+router.use(controllerModel.error)
 
 export default router
